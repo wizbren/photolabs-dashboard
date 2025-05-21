@@ -30,7 +30,8 @@ const data = [
 
 class Dashboard extends Component {
   state = {
-    loading: false
+    loading: false,
+    focused: null
   };
 
   render() {
@@ -40,16 +41,18 @@ class Dashboard extends Component {
       return <Loading />;
     }
 
-    const panels = data.map(panel => {
-      return (
-        <Panel
-          key={panel.id}          //*Important* Required for React when mapping
-          id={panel.id}
-          label={panel.label}
-          value={panel.value}
-        />
-      );
-    });
+    const panels = (
+      this.state.focused
+        ? data.filter(panel => this.state.focused === panel.id)
+        : data
+    ).map(panel => (
+      <Panel
+        key={panel.id}
+        id={panel.id}
+        label={panel.label}
+        value={panel.value}
+      />
+    ));
 
     return <main className={dashboardClasses}>{panels}</main>;
   }
