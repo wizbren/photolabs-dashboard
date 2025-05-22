@@ -19,7 +19,7 @@ const data = [
   {
     id: 2,
     label: "Total Topics",
-    getValue: getTotalPhotos
+    getValue: getTotalTopics
   },
   {
     id: 3,
